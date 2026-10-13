@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import L from 'leaflet'
-import { state, dex, sprite, trainer } from '../lib/store'
+import { state, dex, sprite, trainer, trainChoices } from '../lib/store'
 import { matchup, rankNodes, VERDICTS } from '../lib/advisor'
 import { SKILLS, isBlocked } from '../lib/reqs'
 import { REGIONS } from '../lib/regions'
@@ -238,7 +238,7 @@ watch(() => state.view, v => { if (v === 'map') nextTick(() => map.invalidateSiz
           </div>
           <div v-else class="flex flex-wrap gap-1.5">
             <button
-              v-for="m in state.team"
+              v-for="m in trainChoices"
               :key="m.uid"
               class="flex items-center gap-1.5 rounded-full py-0.5 pl-0.5 pr-2.5 text-xs font-medium ring-1 transition cursor-pointer"
               :class="state.activeUid === m.uid

@@ -117,7 +117,28 @@ img { -webkit-user-drag: none; }
 }
 .mk img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
 .mk.mk-off { display: none; }
-.mk.mk-match > div { border-color: #f59e0b; box-shadow: 0 0 0 3px rgb(245 158 11 / 0.55), 0 1px 4px rgb(0 0 0 / 0.5); }
-.mk.mk-good > div { border-color: #84cc16; box-shadow: 0 0 0 3px rgb(132 204 22 / 0.45), 0 1px 4px rgb(0 0 0 / 0.5); }
-.mk.mk-great > div { border-color: #10b981; box-shadow: 0 0 0 4px rgb(16 185 129 / 0.7), 0 0 14px rgb(16 185 129 / 0.9); }
-.mk.mk-focus > div { border-color: #f43f5e; box-shadow: 0 0 0 4px rgb(244 63 94 / 0.75), 0 1px 6px rgb(0 0 0 / 0.5); }
+
+/* Locais sinalizados (busca, recomendação de treino ou selecionado) viram um alfinete:
+   o círculo ganha uma ponta (gota girada 45°) e sobe para a ponta tocar o ponto exato.
+   Metade da diagonal de 36px ≈ 25px é a distância do centro até a ponta. */
+.mk.mk-match > div, .mk.mk-good > div, .mk.mk-great > div, .mk.mk-focus > div {
+  --pin: #f59e0b;
+  --pin-scale: 1;
+  border: 4px solid var(--pin);
+  border-radius: 50% 50% 50% 0;
+  background: #fff;
+  box-shadow: none;
+  transform: translateY(calc(-25px * var(--pin-scale))) rotate(-45deg) scale(var(--pin-scale));
+  filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.45));
+  animation: pin-drop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.3) backwards;
+}
+.mk.mk-match img, .mk.mk-good img, .mk.mk-great img, .mk.mk-focus img {
+  width: 30px; height: 30px; transform: rotate(45deg);
+}
+.mk.mk-good > div { --pin: #84cc16; }
+.mk.mk-great > div { --pin: #10b981; }
+/* selecionado: vermelho e maior, como o alfinete clássico de mapa (vem por último para vencer a cor do nível) */
+.mk.mk-focus > div { --pin: #ea4335; --pin-scale: 1.3; }
+@keyframes pin-drop {
+  from { transform: translateY(-70px) rotate(-45deg) scale(var(--pin-scale)); opacity: 0; }
+}

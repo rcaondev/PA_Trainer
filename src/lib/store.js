@@ -37,7 +37,7 @@ export const state = reactive({
   meta: null,
   nodes: [],
   pokedex: [],
-  team: [], // { uid, key, nick, level }
+  team: [], // { uid, key, nick, level, party } — party: está no time atual (máx. PARTY_MAX)
   activeUid: null, // pokémon do time escolhido para treinar
   searched: null, // pokémon buscado no mapa (ficha da pokédex)
   theme: loadTheme(),
@@ -53,6 +53,20 @@ watch(() => state.theme, id => {
 export const dex = new Map()
 
 export const sprite = mon => (mon?.img ? `sprites/${mon.img}` : '')
+
+// Só dá para andar com 6 pokémons; "party" são os que estão comigo agora.
+export const PARTY_MAX = 6
+export const party = computed(() => state.team.filter(m => m.party))
+// opções de "Treinar com" no mapa: o time atual (e quem estiver em treino); sem time marcado, todos
+export const trainChoices = computed(() =>
+  party.value.length ? state.team.filter(m => m.party || m.uid === state.activeUid) : state.team)
+
+export function toggleParty(uid) {
+  const member = state.team.find(m => m.uid === uid)
+  if (!member) return
+  if (member.party) member.party = false
+  else if (party.value.length < PARTY_MAX) member.party = true
+}
 
 export const trainer = computed(() => {
   const member = state.team.find(m => m.uid === state.activeUid)

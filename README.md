@@ -32,9 +32,9 @@ Uma linha por tipo, com o que ele vence e o que o vence. Passar o mouse mostra t
 
 ### Meus pokémons
 
-Cadastro do seu time com apelido e nível, salvo localmente. O botão Treinar leva direto ao mapa com as recomendações.
+Cadastro de todos os seus pokémons com apelido e nível, salvo localmente. Marque os 6 que estão com você (time atual) para que só eles apareçam em "Treinar com" no mapa, e filtre a lista por tipo. O botão Treinar leva direto ao mapa com as recomendações.
 
-![Tela Meus pokémons com seis pokémons cadastrados](docs/screenshots/meus-pokemons.png)
+![Tela Meus pokémons com o time atual de seis e os filtros por tipo](docs/screenshots/meus-pokemons.png)
 
 ### Temas
 
