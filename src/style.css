@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-950: #070b14;
+  --color-ink-900: #0b1220;
+  --color-ink-800: #111a2c;
+  --color-ink-700: #1a2538;
+  --color-ink-600: #263349;
+  --color-accent: #10b981;
+  --color-accent-fg: #6ee7b7;   /* texto sobre fundo tingido de accent */
+  --color-on-accent: #070b14;   /* texto sobre accent sólido */
+  --color-strong: #ffffff;      /* texto de maior contraste */
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-nav: #0b1220;
+  --color-nav-fg: #94a3b8;
+  --color-nav-hover: #e2e8f0;
+  --color-nav-on: rgb(16 185 129 / 0.16);
+  --color-nav-on-fg: #6ee7b7;
+  --font-sans: "Inter", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+}
+
+/* Tema Pokédex: vermelho e branco. Só redefine as variáveis; o tema padrão fica intacto. */
+:root[data-theme="pokedex"] {
+  --color-ink-950: #eceef2;
+  --color-ink-900: #ffffff;
+  --color-ink-800: #f1f3f6;
+  --color-ink-700: #e6e9ee;
+  --color-ink-600: #d5dae2;
+  --color-accent: #dc2626;
+  --color-accent-fg: #b91c1c;
+  --color-on-accent: #ffffff;
+  --color-strong: #0f172a;
+  --color-line: rgb(15 23 42 / 0.12);
+  --color-nav: #dc2626;
+  --color-nav-fg: rgb(255 255 255 / 0.82);
+  --color-nav-hover: #ffffff;
+  --color-nav-on: #ffffff;
+  --color-nav-on-fg: #dc2626;
+  /* escalas usadas para texto, invertidas para fundo claro */
+  --color-slate-100: #0f172a;
+  --color-slate-200: #1e293b;
+  --color-slate-300: #334155;
+  --color-slate-400: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-600: #94a3b8;
+  --color-slate-950: #cbd5e1;
+  --color-emerald-300: #047857;
+  --color-emerald-400: #059669;
+  --color-rose-300: #be123c;
+  --color-rose-400: #e11d48;
+  --color-amber-300: #b45309;
+  --color-amber-400: #b45309;
+  --color-sky-300: #0369a1;
+  --text: #1e293b;
+  --panel-shadow: 0 8px 24px rgb(15 23 42 / 0.18);
+}
+
+:root { --text: #e2e8f0; --panel-shadow: 0 10px 30px rgb(0 0 0 / 0.45); }
+
+html, body, #app { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-ink-950);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  overflow: hidden;
+}
+input { user-select: text; }
+img { -webkit-user-drag: none; }
+
+* { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--text) 35%, transparent) transparent; }
+
+/* em @layer components para que utilitários (w-64, px-1…) consigam sobrescrever */
+@layer components {
+  .pixel { image-rendering: pixelated; }
+  .panel {
+    background: color-mix(in srgb, var(--color-ink-900) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    box-shadow: var(--panel-shadow);
+  }
+  .field {
+    width: 100%;
+    background: var(--color-ink-800);
+    border: 1px solid var(--color-line);
+    border-radius: 9px;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.875rem;
+    color: var(--color-strong);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .field:focus { border-color: var(--color-accent); }
+  .field::placeholder { color: #64748b; }
+}
+
+/* ---------- mapa (Leaflet) ---------- */
+.leaflet-container { background: rgb(51 102 153); font-family: inherit; }
+.leaflet-bar { border: 0 !important; box-shadow: 0 4px 14px rgb(0 0 0 / 0.4) !important; }
+.leaflet-bar a {
+  background: var(--color-ink-900) !important;
+  color: var(--text) !important;
+  border-color: var(--color-line) !important;
+}
+.leaflet-bar a:hover { background: var(--color-ink-700) !important; }
+
+.mk { transition: opacity 0.15s; }
+.mk > div {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgb(255 255 255 / 0.93);
+  border: 2px solid #3b82f6;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.5);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.mk img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
+.mk.mk-off { display: none; }
+.mk.mk-match > div { border-color: #f59e0b; box-shadow: 0 0 0 3px rgb(245 158 11 / 0.55), 0 1px 4px rgb(0 0 0 / 0.5); }
+.mk.mk-good > div { border-color: #84cc16; box-shadow: 0 0 0 3px rgb(132 204 22 / 0.45), 0 1px 4px rgb(0 0 0 / 0.5); }
+.mk.mk-great > div { border-color: #10b981; box-shadow: 0 0 0 4px rgb(16 185 129 / 0.7), 0 0 14px rgb(16 185 129 / 0.9); }
+.mk.mk-focus > div { border-color: #f43f5e; box-shadow: 0 0 0 4px rgb(244 63 94 / 0.75), 0 1px 6px rgb(0 0 0 / 0.5); }

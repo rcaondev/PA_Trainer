@@ -1,0 +1,7 @@
+node_modules
+dist
+.cache
+src-tauri/target
+src-tauri/gen
+# configuração local do cargo (caminho de build específico da máquina)
+src-tauri/.cargo
