@@ -4,14 +4,43 @@ App desktop de apoio para o [Padventures](https://www.padventures.org/) (OT Pok�
 
 Autor: Rodrigo Caon — [rodrigocaon.com.br](https://rodrigocaon.com.br)
 
+![Mapa com os melhores locais para treinar o Venusaur em Kanto](docs/screenshots/mapa-treino.png)
+
 ## Funções
 
-- **Mapa** — reprodução do [mapa oficial](https://map.padventures.org/) com todos os spawns, busca por pokémon, filtro por região e por requisito de acesso (DACC, Surf, Fly, Cut…) e nível.
-- **Onde treinar** — escolha um dos seus pokémons e o mapa destaca os locais onde ele tem vantagem de tipo, usando as fraquezas reais de cada pokémon do jogo.
-- **Pokédex** — todas as fichas da Pokédex oficial, com filtro por tipo, geração e "só os que aparecem no mapa".
-- **Tipos** — tabela de vantagens e desvantagens.
-- **Meus pokémons** — cadastro do seu time, salvo localmente.
-- Dois temas de cor: Esmeralda e Pokédex.
+### Onde treinar
+
+Escolha um dos seus pokémons e o mapa destaca os locais onde ele tem vantagem de tipo, usando as fraquezas reais de cada pokémon do jogo. Cada local mostra quantos alvos são bons, o XP médio e os requisitos de acesso; a lista pode ser ordenada por vantagem ou por XP.
+
+### Mapa de spawns
+
+Reprodução do [mapa oficial](https://map.padventures.org/) com todos os spawns, busca por pokémon, filtro por região (Kanto, Johto, Hoenn, Orange, Alola), por requisito de acesso (DACC, Surf, Fly, Cut…) e por nível.
+
+![Busca de um pokémon no mapa, com a lista de locais e os pokémons do spawn selecionado](docs/screenshots/mapa-busca.png)
+
+### Pokédex
+
+Todas as fichas da Pokédex oficial, com filtro por nome, tipo, geração e "só os que aparecem no mapa". A ficha traz atributos, fraquezas e atalhos para ver os locais no mapa ou adicionar ao time.
+
+![Pokédex filtrada pelo tipo Fogo, com a ficha do Charizard aberta](docs/screenshots/pokedex.png)
+
+### Vantagens e desvantagens
+
+Uma linha por tipo, com o que ele vence e o que o vence. Passar o mouse mostra todos os multiplicadores (×2, ×½, ×0), atacando e defendendo.
+
+![Tabela de vantagens e desvantagens com o tipo Fogo fixado](docs/screenshots/tipos.png)
+
+### Meus pokémons
+
+Cadastro do seu time com apelido e nível, salvo localmente. O botão Treinar leva direto ao mapa com as recomendações.
+
+![Tela Meus pokémons com seis pokémons cadastrados](docs/screenshots/meus-pokemons.png)
+
+### Temas
+
+Dois temas de cor, trocados pelo seletor no menu lateral: Esmeralda (escuro) e Pokédex (vermelho e branco).
+
+![Mapa no tema Pokédex, com os locais de treino do Charizard em Hoenn](docs/screenshots/tema-pokedex.png)
 
 ## Stack
 
